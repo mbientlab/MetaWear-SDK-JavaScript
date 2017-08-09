@@ -1,0 +1,44 @@
+{
+  "name": "metawear",
+  "version": "0.0.1",
+  "description": "Official JavaScript SDK for MetaWear",
+  "main": "bindings/javascript/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/ -j",
+    "uninstall": "make -C MetaWear-SDK-Cpp/ clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbientlab/MetaWear-SDK-JavaScript.git"
+  },
+  "keywords": [
+    "metawear",
+    "mbientlab",
+    "bluetooth",
+    "ble",
+    "sensors",
+    "wearable"
+  ],
+  "author": "Stephen Schiffli <stephen@mbientlab.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/mbientlab/MetaWear-SDK-JavaScript/issues"
+  },
+  "homepage": "https://github.com/mbientlab/MetaWear-SDK-JavaScript#readme",
+  "dependencies": {
+    "noble-device": "git://github.com/mbientlab/noble-device.git#f9c25ad",
+    "ref": "^1.3.4",
+    "ffi": "git://github.com/king6cong/node-ffi.git#ce274be",
+    "ref-struct": "^1.1.0",
+    "ref-array": "^1.2.0",
+    "enum": "^2.4.0",
+    "debug": "^2.6.8",
+    "url-exists": "^1.0.3"
+  }
+}
