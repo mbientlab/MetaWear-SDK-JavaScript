@@ -4,7 +4,7 @@
 var MetaWear = require('metawear');
 
 // If you know the MAC address, you can uncomment this line
-//MetaWear.discoverByAddress('cb:7d:c5:b0:20:8f', function(metawear) {
+//MetaWear.discoverByAddress('cb:7d:c5:b0:20:8f', function(device) {
 MetaWear.discover(function (device) {
   console.log('got em');
   // you can be notified of disconnects
