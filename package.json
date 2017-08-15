@@ -1,21 +1,15 @@
 {
   "name": "metawear",
   "version": "0.0.1",
+  "author": "Stephen Schiffli <stephen@mbientlab.com>",
+  "license": "SEE LICENSE IN LICENSE",
   "description": "Official JavaScript SDK for MetaWear",
-  "main": "bindings/javascript/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/ -j",
-    "uninstall": "make -C MetaWear-SDK-Cpp/ clean"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mbientlab/MetaWear-SDK-JavaScript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mbientlab/MetaWear-SDK-JavaScript/issues"
   },
   "keywords": [
     "metawear",
@@ -25,10 +19,9 @@
     "sensors",
     "wearable"
   ],
-  "author": "Stephen Schiffli <stephen@mbientlab.com>",
-  "license": "SEE LICENSE IN LICENSE",
-  "bugs": {
-    "url": "https://github.com/mbientlab/MetaWear-SDK-JavaScript/issues"
+  "main": "./index.js",
+  "engines": {
+    "node": ">=0.10.0"
   },
   "homepage": "https://github.com/mbientlab/MetaWear-SDK-JavaScript#readme",
   "dependencies": {
@@ -40,5 +33,15 @@
     "enum": "^2.4.0",
     "debug": "^2.6.8",
     "url-exists": "^1.0.3"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.5",
+    "mocha": "^3.5.0"
+  },
+  "scripts": {
+    "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/ -j",
+    "uninstall": "make -C MetaWear-SDK-Cpp/ clean",
+    "pretest": "jshint *.js lib/. test/.",
+    "test": "mocha"
   }
 }
