@@ -8,7 +8,7 @@ Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth
 Before getting started, you need to setup the [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites).  While you are there, familiarize yourself with the reset of the README since there a few limitiations and other gotchas spelled out.
 
 Then you can simply install the NPM module:
-```
+```javascript
 npm install metawear
 ```
 
@@ -16,27 +16,27 @@ npm install metawear
 
 Require the metawear package
 
-```
+```javascript
 var MetaWear = require('metawear');
 ```
 Discover the first MetaWear device seen
-```
+```javascript
 MetaWear.discover(function (device) { ... }
 ```
 
 Or a specific MAC address
-```
+```javascript
 MetaWear.discoverByAddress('cb:7d:c5:b0:20:8f', function(device) { ... }
 ```
 There are other options too, documented in [Noble Device](https://github.com/mbientlab/noble-device#discovery-api)
 
 After that, you must connect to the device
-```
+```javascript
 device.connectAndSetUp(function (error) { ... }
 ```
 
 At this point you can call any of the MetaWear API's, for example, you can blink the LED green
-```
+```javascript
 var pattern = new MetaWear.LedPattern();
 MetaWear.mbl_mw_led_load_preset_pattern(pattern.ref(), MetaWear.LedPreset.BLINK);
 MetaWear.mbl_mw_led_write_pattern(device.board, pattern.ref(), MetaWear.LedColor.GREEN);
@@ -44,7 +44,7 @@ MetaWear.mbl_mw_led_play(device.board);
 ```
 
 ### Complete Example ###
-```
+```javascript
 var MetaWear = require('metawear');
 
 MetaWear.discover(function (device) {
