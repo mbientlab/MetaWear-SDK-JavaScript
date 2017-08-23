@@ -1,7 +1,7 @@
 node {
   try {
     stage('checkout') {
-      checkout scm
+      checkout recursiveSubmodules: true, scm
     }
     stage('prepare') {
       sh 'echo $PATH'
