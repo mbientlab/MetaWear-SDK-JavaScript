@@ -4,6 +4,7 @@ node {
       checkout scm
     }
     stage('prepare') {
+      sh 'echo $PATH'
       sh 'node -v'
       sh 'npm prune'
     }
