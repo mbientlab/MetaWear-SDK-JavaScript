@@ -1,7 +1,7 @@
 node {
   try {
     stage('checkout') {
-      checkout scm : [extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]]]
+      checkout([$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: true, reference: '', trackingSubmodules: false]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/mbientlab/MetaWear-SDK-JavaScript']]])
     }
     stage('prepare') {
       sh 'echo $PATH'
