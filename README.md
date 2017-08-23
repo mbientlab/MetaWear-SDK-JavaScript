@@ -1,5 +1,7 @@
 # MetaWear JavaScript SDK #
-JavaScript SDK for creating MetaWear apps that run on node.js or in the browser (web-bluetooth support not widespread yet, but growing).  This is meant to be a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) providing a JavaScript interface.  It uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
+JavaScript SDK for creating MetaWear apps that run on node.js or in the browser (web-bluetooth support not widespread yet, but growing).  This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.  Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-SDK-JavaScript/tree/master/examples).
+
+Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
 # Install #
 
