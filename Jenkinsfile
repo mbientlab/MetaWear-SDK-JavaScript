@@ -4,19 +4,18 @@ node {
       checkout scm
     }
     stage('prepare') {
-      sh "git clean -fdx"
-      sh "npm prune"
+      sh 'node -v'
+      sh 'npm prune'
     }
     stage('compile') {
-      sh "node -v"
-      sh "npm install"
+      sh 'npm install'
     }
     stage('test') {
-      sh "npm test"
+      sh 'npm test'
     }
   } finally {
     stage('cleanup') {
-      echo "doing some cleanup..."
+      echo 'doing some cleanup...'
     }
   }
 }
