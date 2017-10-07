@@ -1,4 +1,5 @@
-var MetaWear = require('metawear');
+var MetaWear = require('../index')//require('metawear');
+var fs = require('fs');
 
 var addresses = [
   'f3:97:6b:cc:71:97',

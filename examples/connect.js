@@ -1,7 +1,7 @@
 /**
  * Created by sschiffli on 4/21/16.
  */
-var MetaWear = require('metawear');
+var MetaWear = require('../index')//require('metawear');
 
 // If you know the MAC address, you can uncomment this line
 //MetaWear.discoverByAddress('cb:7d:c5:b0:20:8f', function(device) {
