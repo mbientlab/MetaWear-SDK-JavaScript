@@ -5,7 +5,7 @@ Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth
 
 # Install #
 
-Before getting started, you need to setup the [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites).  While you are there, familiarize yourself with the reset of the README since there a few limitiations and other gotchas spelled out.
+Before getting started, you need to setup the [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites).  While you are there, familiarize yourself with the rest of the README since there a few limitiations and other gotchas spelled out.
 
 Then you can simply install the NPM module:
 ```javascript
