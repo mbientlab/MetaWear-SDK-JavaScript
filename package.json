@@ -1,6 +1,6 @@
 {
   "name": "metawear",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Stephen Schiffli <stephen@mbientlab.com>",
   "license": "SEE LICENSE IN LICENSE",
   "description": "Official JavaScript SDK for MetaWear",
@@ -25,18 +25,18 @@
   },
   "homepage": "https://github.com/mbientlab/MetaWear-SDK-JavaScript#readme",
   "dependencies": {
-    "noble-device": "git://github.com/mbientlab/noble-device.git#f9c25ad",
-    "ref": "^1.3.4",
+    "noble-device": "git://github.com/mbientlab/noble-device.git#7c8bccf",
+    "ref": "^1.3.5",
     "ffi": "git://github.com/king6cong/node-ffi.git#ce274be",
     "ref-struct": "^1.1.0",
     "ref-array": "^1.2.0",
-    "enum": "^2.4.0",
+    "enum": "^2.5.0",
     "debug": "^2.6.8",
     "url-exists": "^1.0.3"
   },
   "devDependencies": {
     "jshint": "^2.9.5",
-    "mocha": "^3.5.0"
+    "mocha": "^4.0.1"
   },
   "scripts": {
     "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/ -j",
