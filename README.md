@@ -1,13 +1,12 @@
 # MetaWear JavaScript SDK #
 JavaScript SDK for creating MetaWear apps that run on node.js or in the browser (web-bluetooth support not widespread yet, but growing).  This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.  Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-SDK-JavaScript/tree/master/examples).
 
-Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
-# Install #
+# Install Noble #
+The Mbient JavaScript SDK relies on [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications. You need to setup  the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install).  You should familiarize yourself with the rest of the README since there a few limitiations and other gotchas spelled out, such as the maximum number of simultaneous Bluetooth connections.
 
-Before getting started, you need to setup the [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites).  While you are there, familiarize yourself with the rest of the README since there a few limitiations and other gotchas spelled out.
-
-Then you can simply install the NPM module:
+# Install Metawear #
+Install mbient's Metawear NPM module by simply entering in the command line: 
 ```javascript
 npm install metawear
 ```
