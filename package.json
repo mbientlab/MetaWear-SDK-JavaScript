@@ -1,6 +1,6 @@
 {
   "name": "metawear",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Stephen Schiffli <stephen@mbientlab.com>",
   "license": "SEE LICENSE IN LICENSE",
   "description": "Official JavaScript SDK for MetaWear",
