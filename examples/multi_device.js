@@ -1,5 +1,6 @@
 var MetaWear = require('../index')//require('metawear');
 var fs = require('fs');
+var ref = require('ref');
 
 var addresses = [
   'f3:97:6b:cc:71:97',
@@ -39,7 +40,7 @@ function startAccelStream(device) {
     MetaWear.mbl_mw_acc_set_range(device.board, 8.0);
     MetaWear.mbl_mw_acc_write_acceleration_config(device.board);
     var accSignal = MetaWear.mbl_mw_acc_get_acceleration_data_signal(device.board);
-    MetaWear.mbl_mw_datasignal_subscribe(accSignal, MetaWear.FnVoid_DataP.toPointer(function gotTimer(dataPtr) {
+    MetaWear.mbl_mw_datasignal_subscribe(accSignal, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer(function gotTimer(context, dataPtr) {
       var data = dataPtr.deref();
       var pt = data.parseValue();
       console.log(pt.x, pt.y, pt.z);
