@@ -1,9 +1,38 @@
-# MetaWear JavaScript SDK #
-JavaScript SDK for creating MetaWear apps that run on node.js or in the browser (web-bluetooth support not widespread yet, but growing).  This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.  Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-SDK-JavaScript/tree/master/examples).
+# MetaWear  SDK for Javascript by MBIENTLAB
+
+[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
+[![License](https://img.shields.io/cocoapods/l/MetaWear.svg?style=flat)](https://mbientlab.com/license)
+[![Version](https://img.shields.io/badge/node-%3E%3D%208.0.0-brightgreen?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
+
+![alt tag](https://raw.githubusercontent.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/master/Images/Metawear.png)
+
+SDK for creating MetaWear apps that run on node.js or in the browser (web-bluetooth support not widespread yet, but growing).  This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.  
+
+Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-SDK-JavaScript/tree/master/examples).
 
 Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
-# Install #
+### Overview
+
+[MetaWear](https://mbientlab.com) is a complete development and production platform for wearable and connected device applications.
+
+MetaWear features a number of sensors and peripherals all easily controllable over Bluetooth 4.0 Low Energy using this SDK, no firmware or hardware experience needed!
+
+The MetaWear hardware comes pre-loaded with a wirelessly upgradeable firmware, so it keeps getting more powerful over time.
+
+### Requirements
+- [MetaWear board](https://mbientlab.com/store/)
+- A linux or Windows 10+ machine with Bluetooth 4.0
+
+### License
+See the [License](https://github.com/mbientlab/MetaWear-SDK-JavaScript/blob/master/LICENSE).
+
+### Support
+Reach out to the [community](https://mbientlab.com/community/) if you encounter any problems, or just want to chat :)
+
+## Getting Started
+
+### Installation
 
 Before getting started, you need to setup the [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites).  While you are there, familiarize yourself with the reset of the README since there a few limitiations and other gotchas spelled out.
 
@@ -12,7 +41,7 @@ Then you can simply install the NPM module:
 npm install metawear
 ```
 
-# Usage #
+### Usage
 
 Require the metawear package
 
@@ -43,7 +72,7 @@ MetaWear.mbl_mw_led_write_pattern(device.board, pattern.ref(), MetaWear.LedColor
 MetaWear.mbl_mw_led_play(device.board);
 ```
 
-### Complete Example ###
+### Example
 ```javascript
 var MetaWear = require('metawear');
 
@@ -65,3 +94,6 @@ MetaWear.discover(function (device) {
 });
 ```
 
+### Tutorials
+
+Tutorials can be found [here](https://mbientlab.com/tutorials/).
