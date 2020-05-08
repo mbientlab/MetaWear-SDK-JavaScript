@@ -1,11 +1,8 @@
-/**
- * Created by sschiffli on 8/15/17.
- */
 var MetaWear = require('../index')//require('metawear');
 
 // If you know the MAC address, you can uncomment this line
-//MetaWear.discoverByAddress('cb:7d:c5:b0:20:8f', function(device) {
-MetaWear.discover(function (device) {
+MetaWear.discoverByAddress('f9:b5:f9:81:3f:77', function(device) {
+//MetaWear.discover(function (device) {
   device.connectAndSetUp(function (error) {
     var pattern = new MetaWear.LedPattern();
     MetaWear.mbl_mw_led_load_preset_pattern(pattern.ref(), MetaWear.LedPreset.BLINK);

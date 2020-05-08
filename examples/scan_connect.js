@@ -1,6 +1,3 @@
-/**
- * Created by sschiffli on 4/21/16.
- */
 var MetaWear = require('../index')//require('metawear');
 
 // If you know the MAC address, you can uncomment this line
