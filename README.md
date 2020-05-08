@@ -12,8 +12,6 @@ Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-
 
 Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
-Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
-
 ### Overview
 
 [MetaWear](https://mbientlab.com) is a complete development and production platform for wearable and connected device applications.
@@ -35,7 +33,9 @@ Reach out to the [community](https://mbientlab.com/community/) if you encounter 
 ## Getting Started
 
 ### Installation
-The Mbient JavaScript SDK relies on [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications. You need to setup  the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install).  You should familiarize yourself with the rest of the README since there a few limitiations and other gotchas spelled out, such as the maximum number of simultaneous Bluetooth connections.
+The Mbient JavaScript SDK relies on [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications. You need to setup  the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install).  
+
+You should familiarize yourself with this README and our tutorials since there a few limitiations and other gotchas spelled out, such as the maximum number of simultaneous Bluetooth connections.
 
 Then you can simply install the MetaWear NPM module with command line: 
 ```javascript
