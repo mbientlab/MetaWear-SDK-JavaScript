@@ -33,10 +33,11 @@ Reach out to the [community](https://mbientlab.com/community/) if you encounter 
 ## Getting Started
 
 ### Installation
+The Mbient JavaScript SDK relies on [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications. You need to setup  the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install).  
 
-Before getting started, you need to setup the [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites).  While you are there, familiarize yourself with the reset of the README since there a few limitiations and other gotchas spelled out.
+You should familiarize yourself with this README and our tutorials since there a few limitiations and other gotchas spelled out, such as the maximum number of simultaneous Bluetooth connections.
 
-Then you can simply install the NPM module:
+Then you can simply install the MetaWear NPM module with command line: 
 ```javascript
 npm install metawear
 ```
@@ -67,7 +68,7 @@ device.connectAndSetUp(function (error) { ... }
 At this point you can call any of the MetaWear API's, for example, you can blink the LED green
 ```javascript
 var pattern = new MetaWear.LedPattern();
-MetaWear.mbl_mw_led_load_preset_pattern(pattern.ref(), MetaWear.LedPreset.BLINK);
+MetaWear.mbl_mw_led_load_p_pattern(pattern.ref(), MetaWear.LedPreset.BLINK);
 MetaWear.mbl_mw_led_write_pattern(device.board, pattern.ref(), MetaWear.LedColor.GREEN);
 MetaWear.mbl_mw_led_play(device.board);
 ```
