@@ -1,6 +1,6 @@
 # MetaWear  SDK for Javascript by MBIENTLAB
 
-[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
+[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20win--64-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
 [![License](https://img.shields.io/cocoapods/l/MetaWear.svg?style=flat)](https://mbientlab.com/license)
 [![Version](https://img.shields.io/badge/node-%3E%3D%208.0.0-brightgreen?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
 
