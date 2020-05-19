@@ -13,7 +13,7 @@ Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-
 Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
 > ADDITIONAL NOTES  
-You can try to get our JS SDK running on OSX or Windows at your own risk as this requires that you get Noble to work under those OSs yourself. We do not provide examples or support for this.
+You can try to get our JS SDK running on OSX or Windows at your own risk as this requires that you get Noble to work under those OSs yourself. We do not provide examples or support for this. Please see the Noble README.
 
 ### Overview
 
