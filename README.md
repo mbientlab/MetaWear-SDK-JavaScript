@@ -1,6 +1,6 @@
 # MetaWear  SDK for Javascript by MBIENTLAB
 
-[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C%20-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
+[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
 [![License](https://img.shields.io/cocoapods/l/MetaWear.svg?style=flat)](https://mbientlab.com/license)
 [![Version](https://img.shields.io/badge/node-%3D%208.0.0-brightgreen?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
 
@@ -25,7 +25,7 @@ The MetaWear hardware comes pre-loaded with a wirelessly upgradeable firmware, s
 
 ### Requirements
 - [MetaWear board](https://mbientlab.com/store/)
-- A linux machine with Bluetooth 4.0
+- A linux machine with Bluetooth 4.0 (or the other OSs w/ Bluetooth support at your own risk)
 
 ### License
 See the [License](https://github.com/mbientlab/MetaWear-SDK-JavaScript/blob/master/LICENSE).
