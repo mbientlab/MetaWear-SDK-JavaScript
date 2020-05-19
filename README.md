@@ -1,14 +1,14 @@
 # MetaWear  SDK for Javascript by MBIENTLAB
 
-[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
+[![Platforms](https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
 [![License](https://img.shields.io/cocoapods/l/MetaWear.svg?style=flat)](https://mbientlab.com/license)
 [![Version](https://img.shields.io/badge/node-%3D%208.0.0-brightgreen?style=flat)](https://github.com/mbientlab/MetaWear-SDK-JavaScript)
 
 ![alt tag](https://raw.githubusercontent.com/mbientlab/MetaWear-SDK-iOS-macOS-tvOS/master/Images/Metawear.png)
 
-SDK for creating MetaWear apps that run on node.js or in the browser (web-bluetooth support not widespread yet, but growing).  This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.  
+SDK for creating MetaWear apps that run on node.js. Supported mainly on Linux but can also work on Windows, OS X and the Browser (web-bluetooth support not widespread yet, but growing) if Noble is setup correctly.  This is a thin wrapper around the [MetaWear C++ API](https://github.com/mbientlab/Metawear-CppAPI) so you will find the C++ [documentation](https://mbientlab.com/cppdocs/latest/) and [API reference](https://mbientlab.com/docs/metawear/cpp/latest/globals.html) useful.  
 
-Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-SDK-JavaScript/tree/master/examples).
+Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-SDK-JavaScript/tree/master/examples). Again, supported on Linux only out-of-the-box.
 
 Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
