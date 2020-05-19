@@ -12,6 +12,9 @@ Also, check out the JavaScript [examples](https://github.com/mbientlab/MetaWear-
 
 Under the hood it uses [Noble](https://github.com/mbientlab/noble) for Bluetooth Low Energy communications.
 
+> ADDITIONAL NOTES  
+You can try to get our JS SDK running on OSX or Windows at your own risk as this requires that you get Noble to work under those OSs yourself. We do not provide examples or support for this.
+
 ### Overview
 
 [MetaWear](https://mbientlab.com) is a complete development and production platform for wearable and connected device applications.
@@ -22,7 +25,7 @@ The MetaWear hardware comes pre-loaded with a wirelessly upgradeable firmware, s
 
 ### Requirements
 - [MetaWear board](https://mbientlab.com/store/)
-- A linux or Windows 10+ machine with Bluetooth 4.0
+- A linux machine with Bluetooth 4.0
 
 ### License
 See the [License](https://github.com/mbientlab/MetaWear-SDK-JavaScript/blob/master/LICENSE).
