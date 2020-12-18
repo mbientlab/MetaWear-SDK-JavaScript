@@ -37,26 +37,22 @@ Reach out to the [community](https://mbientlab.com/community/) if you encounter 
 
 ## Getting Started
 
-### Installation
+### Pre-Installation
 
-#### Requirements 
-
-##### 0. Node and NPM
+#### Node and NPM
 You need to make sure you have node and npm installed on your machine. Here's a quick rundown but you should google-fu proper steps for your specific OS and Node version.
 
 We are currently supporting Node 10.23.0. Here are steps to install Node on Linux (Ubuntu). You have 3 options:
 
-1. You can install Node from the repositories:
+##### 1. You can install Node from the repositories:
 ```
 sudo apt install nodejs
 sudo apt install npm
 nodejs -v
 ```
-This will install the latest Node.
+This will install the latest Node. You may need to alias nodejs to node.
 
-You may need to alias nodejs to node.
-
-2. You can install Node from a PPA:
+##### 2. You can install Node from a PPA:
 ```
 cd ~
 curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
@@ -64,11 +60,9 @@ sudo bash nodesource_setup.sh
 sudo apt install nodejs
 nodejs -v
 ```
-This will install node v10.23.0 (latest stable release of node 10). You can replace the 10 with 12 if you want to install node 12.
+This will install node v10.23.0 (latest stable release of node 10). You can replace the 10 with 12 if you want to install node 12. You may need to alias nodejs to node.
 
-You may need to alias nodejs to node.
-
-3. Using NVM (my preferred method):
+##### 3. Using NVM (preferred method):
 ```
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
 bash install_nvm.sh
@@ -79,6 +73,7 @@ node -v
 ```
 Check the latest version of NVM before you install (it might be higher than v0.35.3). You can go online to learn how to use NVM to switch node versions on the fly.
 
+##### Using sudo
 It is important to note that because our scripts use the Bluetooth libraries of the OS, it is required to use sudo (or you will get a warning and the scripts won't work). You need to decide if you are ok to use sudo or not.
 
 You also need to check that the version of node you are using is as expected for sudo:
@@ -90,9 +85,11 @@ v0.11.8-pre
 ```
 As you can see here, the sudo node version is not the same as the current user version. Here's a [workaround](https://stackoverflow.com/questions/21215059/cant-use-nvm-from-root-or-sudo).
 
+### Installation
+
 You have two options for installation:
 
-##### 1. Use NPM
+#### 1. Use NPM
 The Mbient JavaScript SDK relies on [Noble](https://github.com/mbientlab/noble) and [Noble-Device](https://github.com/mbientlab/noble-device) for Bluetooth Low Energy communications. 
 
 You need to setup the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install).  
@@ -102,10 +99,11 @@ Make sure you use our versions of these libraries as the original packages have 
 Then you can simply install the MetaWear package lib with NPM using the command line: 
 ```javascript
 npm install metawear
+npm update metawear
 ```
-This step takes a long time as all the packages are installed and the MetaWear CPP library will be compiled on your machine.
+This step takes a long time as all the packages are installed and the MetaWear CPP library will be compiled on your machine. You may or may not need to update.
 
-##### 2. Use our Repository 
+#### 2. Use our Repository 
 We packaged everything for you already in this repository with the package.json file ready to be installed with npm.
 
 Make sure that when you clone this repository, that you clone the submodule with it.
@@ -140,7 +138,7 @@ Simply change it to this:
 var MetaWear = require('metawear');
 ```
 
-##### Notes
+#### Notes
 You should familiarize yourself with this README and our tutorials since there a few limitiations and other gotchas spelled out, such as the maximum number of simultaneous Bluetooth connections. 
 
 ### Usage
