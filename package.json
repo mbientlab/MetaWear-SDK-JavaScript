@@ -27,8 +27,9 @@
   "dependencies": {
     "debug": "^2.6.8",
     "enum": "^2.5.0",
-    "ffi": "git://github.com/king6cong/node-ffi.git#ce274be",
-    "noble-device": "git://github.com/mbientlab/noble-device.git#205d172",
+    "ffi": "git://github.com/jmcomby/node-ffi-napi.git",
+    "noble-device": "https://github.com/mbientlab/noble-device.git",
+    "noble": "https://github.com/mbientlab/noble.git",
     "ref": "^1.3.5",
     "ref-array": "^1.2.0",
     "ref-struct": "^1.1.0",
