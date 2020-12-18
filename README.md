@@ -73,8 +73,8 @@ node -v
 ```
 Check the latest version of NVM before you install (it might be higher than v0.35.3). You can go online to learn how to use NVM to switch node versions on the fly.
 
-##### Using sudo
-It is important to note that because our scripts use the Bluetooth libraries of the OS, it is required to use sudo (or you will get a warning and the scripts won't work). You need to decide if you are ok to use sudo or not.
+##### Using sudo - a Warning
+It is important to note that because our scripts use OS level Bluetooth libraries, it may be required to use sudo (or you will get a warning and the scripts won't work). You need to decide if you are ok to use sudo or not.
 
 You also need to check that the version of node you are using is as expected for sudo:
 ```
@@ -83,7 +83,7 @@ v0.10.23
 $ sudo node -v
 v0.11.8-pre
 ```
-As you can see here, the sudo node version is not the same as the current user version. Here's a [workaround](https://stackoverflow.com/questions/21215059/cant-use-nvm-from-root-or-sudo).
+As you can see here, the sudo node version is not the same as the current user version. Here's a [workaround](https://stackoverflow.com/questions/21215059/cant-use-nvm-from-root-or-sudo). You can google-fu more about this topic.
 
 ### Installation
 
@@ -92,16 +92,16 @@ You have two options for installation:
 #### 1. Use NPM
 The Mbient JavaScript SDK relies on [Noble](https://github.com/mbientlab/noble) and [Noble-Device](https://github.com/mbientlab/noble-device) for Bluetooth Low Energy communications. 
 
-You need to setup the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install).  
-
-Make sure you use our versions of these libraries as the original packages have been abandoned.
+You need to setup the relevant [prerequisites for Noble](https://github.com/mbientlab/noble#prerequisites) and then [install Noble](https://github.com/mbientlab/noble#install). Make sure you use our versions of these libraries as the original packages have been abandoned.
 
 Then you can simply install the MetaWear package lib with NPM using the command line: 
-```javascript
+```
 npm install metawear
-npm update metawear
 ```
 This step takes a long time as all the packages are installed and the MetaWear CPP library will be compiled on your machine. You may or may not need to update.
+```
+npm update metawear
+```
 
 #### 2. Use our Repository 
 We packaged everything for you already in this repository with the package.json file ready to be installed with npm.
@@ -132,11 +132,13 @@ Please note that the examples in our examples folder will use the local metawear
 ```javascript
 var MetaWear = require('../index')
 ```
+This would be using the local metawear code. You will probably never need this unless you are planning to change our internal libraries.
 
 Simply change it to this:
 ```javascript
 var MetaWear = require('metawear');
 ```
+This would be using the metawear code in your local npm `node_modules` directory as installed. This is the prefered way.
 
 #### Notes
 You should familiarize yourself with this README and our tutorials since there a few limitiations and other gotchas spelled out, such as the maximum number of simultaneous Bluetooth connections. 
