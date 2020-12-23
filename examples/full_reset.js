@@ -1,6 +1,6 @@
 var MetaWear = require('../index')//require('metawear');
 
-MetaWear.discoverByAddress('f9:b5:f9:81:3f:77', function(device) {
+MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
   console.log('Discovered');
 //MetaWear.discover(function (device) {
   device.connectAndSetUp(function (error) {
