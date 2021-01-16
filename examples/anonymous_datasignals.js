@@ -1,7 +1,3 @@
-
-/**
- * Created by sschiffli on 11/2/17.
- */
 var MetaWear = require('../index')//require('metawear');
 var ref = require('ref')
 

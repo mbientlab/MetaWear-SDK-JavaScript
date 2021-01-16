@@ -1,11 +1,8 @@
-/**
- * Created by sschiffli on 4/21/16.
- */
 var MetaWear = require('../index')//require('metawear');
 
 // If you know the MAC address, you can uncomment this line
-//MetaWear.discoverByAddress('cb:7d:c5:b0:20:8f', function(device) {
-MetaWear.discover(function (device) {
+MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
+//MetaWear.discover(function (device) {
   console.log('got em');
   // you can be notified of disconnects
   device.on('disconnect', function () {

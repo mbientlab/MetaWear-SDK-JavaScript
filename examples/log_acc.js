@@ -8,8 +8,8 @@ var ref = require('ref');
 var accelLogger = null;
 
 // If you know the MAC address, you can uncomment this line
-//MetaWear.discoverByAddress('f3:97:6b:cc:71:97', function (device) {
-MetaWear.discover(function (device) {
+MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function (device) {
+//MetaWear.discover(function (device) {
   console.log('discovered ' + device.address);
   device.connectAndSetUp(function (error) {
     if (error) {
