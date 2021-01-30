@@ -1,5 +1,5 @@
-var MetaWear = require('../index.js')//require('metawear');
-var ref = require('ref')
+var MetaWear = require('../index')//require('metawear');
+var ref = require('ref');
 
 async function mainAsync(mac) {
   var device = await new Promise((resolve, reject) => MetaWear.discoverByAddress(mac.toLowerCase(), d => resolve(d)))
