@@ -39,7 +39,7 @@
     "mocha": "^8.2.1"
   },
   "scripts": {
-    "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/ -j",
+    "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/",
     "uninstall": "make -C MetaWear-SDK-Cpp/ clean",
     "pretest": "jshint *.js lib/. test/.",
     "test": "mocha"
