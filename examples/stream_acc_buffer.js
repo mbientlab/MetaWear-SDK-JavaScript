@@ -1,5 +1,5 @@
-var MetaWear = require('metawear');
-var cbindings = require('./MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
+var MetaWear = require('../index');
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref');
 
 async function setupStream(device) {
