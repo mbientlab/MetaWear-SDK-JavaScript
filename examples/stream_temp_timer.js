@@ -1,5 +1,5 @@
-var MetaWear = require('./index.js');
-var cbindings = require('./MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
+var MetaWear = require('../index');
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref');
 
 MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
