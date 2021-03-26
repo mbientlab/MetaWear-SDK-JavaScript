@@ -8,7 +8,7 @@ var ref = require('ref');
 var accelLogger = null;
 
 // If you know the MAC address, you can uncomment this line
-MetaWear.discoverByAddress('d1:e7:65:2a:ad:6f', function (device) {
+MetaWear.discoverByAddress('c7:06:35:93:2d:12', function (device) {
 //MetaWear.discover(function (device) {
   console.log('discovered ' + device.address);
   device.connectAndSetUp(function (error) {
@@ -42,6 +42,7 @@ function downloadLog(device, callback) {
   MetaWear.mbl_mw_acc_disable_acceleration_sampling(device.board);
   // Shutdown log
   MetaWear.mbl_mw_logging_stop(device.board);
+  MetaWear.mbl_mw_logging_flush_page(device.board);
   // Setup handerl for accel data points
   MetaWear.mbl_mw_logger_subscribe(accelLogger, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer(function onSignal(context, dataPtr) {
     var data = dataPtr.deref();

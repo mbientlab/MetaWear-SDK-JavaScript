@@ -1,4 +1,5 @@
-var MetaWear = require('metawear');
+var MetaWear = require('../index.js');
+//var MetaWear = require('metawear');
 var ref = require('ref')
 
 async function mainAsync(mac) {
