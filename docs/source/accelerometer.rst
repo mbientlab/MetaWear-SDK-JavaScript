@@ -16,6 +16,9 @@ necessary. ::
 
     let accType = MetaWear.mbl_mw_metawearboard_lookup_module(device.board, MBL_MW_MODULE_ACCELEROMETER);
     switch(accType) {
+        case MBL_MW_MODULE_ACC_TYPE_BMI270:
+            // code block
+            break;
         case MBL_MW_MODULE_ACC_TYPE_BMI160:
             // code block
             break;
@@ -42,7 +45,7 @@ Linear acceleration is represented with the
 `MblMwCartesianFloat <https://mbientlab.com/docs/metawear/cpp/latest/structMblMwCartesianFloat.html>`_ struct and the values are in units of Gs.  The 
 ``x``, ``y``, and ``z`` fields contain the acceleration in that direction. ::
 
-    console.log('Get acc signal.')
+    console.log('Get acc signal.');
     let acc = MetaWear.mbl_mw_acc_get_acceleration_data_signal(device.board);
   
     console.log('Set up stream.')
@@ -52,7 +55,7 @@ Linear acceleration is represented with the
         console.log('epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z)
     }))
   
-    console.log('Start accelerometer.')
+    console.log('Start accelerometer.');
     MetaWear.mbl_mw_acc_enable_acceleration_sampling(device.board);
     MetaWear.mbl_mw_acc_start(device.board);
 
@@ -71,6 +74,153 @@ write the configuration to the sensor. ::
         
     // Write the config to the sensor
     MetaWear.mbl_mw_acc_write_acceleration_config(device.board);
+
+Wrist Wear Gestures
+---------------------
+The BMI270 is designed for Wear OS by GoogleTM7 and features wrist gestures such as flick in/out, push arm down/pivot up, wrist jiggle/shake that help navigate the smartwatch.
+
+See https://support.google.com/wearos/answer/6312406?hl=en
+
+For flick-in detection, the user must slowly turn the wrist away from the body (i.e. roll-out shown with a light-grey arrow in) and then quickly bring it back (i.e. roll-in shown with a darker-black arrow in to its original position.
+
+For flick-out detection, the user must quickly turn the wrist away from the body (i.e. roll-out shown with a darker-black arrow in above picture) and then slowly bring it back (i.e. roll-in shown with a light-grey arrow in above picture) to its original position.
+
+The speed of the roll-out and roll-in movements determine if the user performed a flick-in or a flick-out movement. ::
+
+    // Start the accelerometer
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Configure
+    MetaWear.mbl_mw_acc_bmi270_wrist_gesture_armside(device.board, 0); // left arm
+    MetaWear.mbl_mw_acc_bmi270_write_wrist_gesture_config(device.board);
+    // Get gesture signal
+    let gesture_sig = mbl_mw_acc_bmi270_get_wrist_detector_data_signal(device.board);  
+    MetaWear.mbl_mw_datasignal_subscribe(gesture_sig, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        var data = pointer.deref();
+        var value = data.parseValue();
+        console.log('Activity detected: ' + value); //MblMwBoschGestureType type
+    }))
+    // Start detecting motion and turn on acc
+    MetaWear.mbl_mw_acc_bmi270_enable_wrist_gesture(device.board);
+    
+There are config functions for the wrist wear feature: ::
+
+    MetaWear.mbl_mw_acc_bmi270_wrist_gesture_peak();
+    MetaWear.mbl_mw_acc_bmi270_wrist_gesture_samples();
+    MetaWear.mbl_mw_acc_bmi270_wrist_gesture_duration();
+
+Activity Detector
+------------------
+The BMI270 can detect simple user activities (unknown, still, walking, running) and can send an interrupt if those are changed, e.g. from walking to running or vice versus. ::
+
+    // Start the accelerometer
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Get activity signal
+    let activity_sig = MetaWear.mbl_mw_acc_bmi270_get_activity_detector_data_signal(device.board);
+    MetaWear.mbl_mw_datasignal_subscribe(activity_sig, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        var data = pointer.deref();
+        var value = data.parseValue();
+        console.log('Activity detected: ' + value);
+    }))
+    // Start detecting motion and turn on acc
+    MetaWear.mbl_mw_acc_bmi270_enable_activity_detection(device.board);
+
+Wrist Wear Wakeup 
+----------------------
+The BMI270 has a wrist wear wakeup feature that is designed to detect any natural way of user moving the hand to see the watch dial when wearing a classical wrist watch. 
+
+The feature is intended to be used as wakeup gesture (i.e. for triggering screen-on or screen-off) in wrist wearable devices.
+
+This feature has dependency on the device orientation in the user system. Implementation of the feature to detect gesture assumes that the sensor co-ordinate frame is aligned with the device/system co- ordinate frame. The assumed default device/system co-ordinate frame is depicted below. 
+
+Please refer to `this section <https://mbientlab.com/documents/metawear/cpp/latest/accelerometer__bosch_8h.html#aca2fa97988a33550e20b02c816c6b91f>`_ regarding axis remapping. ::
+
+    // Start the accelerometer
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Get gesture signal
+    let wrist_sig = MetaWear.mbl_mw_acc_bmi270_get_wrist_detector_data_signal(board);
+    MetaWear.mbl_mw_datasignal_subscribe(wrist_sig, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        var data = pointer.deref();
+        var value = data.parseValue();
+        console.log('Gesture detected: ' + value); //MblMwBoschGestureType type
+    }))
+    // Start detecting motion and turn on acc
+    MetaWear.mbl_mw_acc_bmi270_enable_wrist_wakeup(board);
+    
+There are config functions for the wrist wear feature: ::
+
+    MetaWear.mbl_mw_acc_bmi270_wrist_wakeup_angle_focus();
+    MetaWear.mbl_mw_acc_bmi270_wrist_wakeup_angle_nonfocus();
+    MetaWear.mbl_mw_acc_bmi270_wrist_wakeup_tilt_lr();
+    MetaWear.mbl_mw_acc_bmi270_wrist_wakeup_tilt_ll();
+    MetaWear.mbl_mw_acc_bmi270_wrist_wakeup_tilt_pd();
+    MetaWear.mbl_mw_acc_bmi270_wrist_wakeup_tilt_pu();
+
+Motion Detector
+----------------
+The BMI270 can detect significant motion (android motion), any motion (high acc motion) or no motion. The accelerometer must be at least running at 25Hz.
+
+Detect Any Motion
+^^^^^^^^^^^^^^^^^^^
+The anymotion detection uses the slope between two acceleration signals to detect changes in motion. ::
+
+    // Start the accelerometer
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Set any motion config - acc must be on for this
+    MetaWear.mbl_mw_acc_bosch_set_any_motion_count(device.board, 5);
+    MetaWear.mbl_mw_acc_bosch_set_any_motion_threshold(device.board, 170.0);
+    MetaWear.mbl_mw_acc_bosch_write_motion_config(board, MBL_MW_ACC_BOSCH_MOTION_ANYMOTION);
+    // Get any motion signal
+    let any_motion = MetaWear.mbl_mw_acc_bosch_get_motion_data_signal(device.board);
+    MetaWear.mbl_mw_datasignal_subscribe(any_motion, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        var data = pointer.deref();
+        var value = data.parseValue();
+        console.log('Any motion detected: ' + value);
+    }))
+    // Start detecting motion
+    MetaWear.mbl_mw_acc_bosch_enable_motion_detection(device.board, MBL_MW_ACC_BOSCH_MOTION_ANYMOTION);
+    
+Detect No Motion
+^^^^^^^^^^^^^^^^^^^
+The nomotion detection can detect when there is no motion for a certain amount of time. ::
+
+    // Start the accelerometer
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Set any motion config - acc must be on for this
+    MetaWear.mbl_mw_acc_bosch_set_no_motion_count(device.board, 5);
+    MetaWear.mbl_mw_acc_bosch_set_no_motion_threshold(device.board, 144.0);
+    MetaWear.mbl_mw_acc_bosch_write_motion_config(device.board, MBL_MW_ACC_BOSCH_MOTION_NOMOTION);
+    // Get any motion signal
+    let no_motion = MetaWear.mbl_mw_acc_bosch_get_motion_data_signal(device.board);
+    MetaWear.mbl_mw_datasignal_subscribe(sig_motion, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        var data = pointer.deref();
+        var value = data.parseValue();
+        console.log('No motion detected: ' + value);
+    }))
+    // Start detecting motion and turn on acc
+    MetaWear.mbl_mw_acc_bosch_enable_motion_detection(device.board, MBL_MW_ACC_BOSCH_MOTION_NOMOTION);
+
+Detect Significant Motion
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+The significant motion interrupt implements the interrupt required for motion detection in Android 4.3 and greater: https://source.android.com/devices/sensors/sensor-types.html#significant_motion.
+A significant motion is a motion due to a change in the user location.
+
+Examples of such significant motions are walking or biking, sitting in a moving car, coach or train, etc. 
+Examples of situations that does typically not trigger significant motion include phone in pocket and person is stationary or phone is at rest on a table which is in normal office use. . ::
+    
+    // Start the accelerometer
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Set any motion config - acc must be on for this
+    MetaWear.mbl_mw_acc_bosch_set_sig_motion_blocksize(device.board, 250);
+    MetaWear.mbl_mw_acc_bosch_write_motion_config(device.board, MBL_MW_ACC_BOSCH_MOTION_SIGMOTION);
+    // Get any motion signal
+    let sig_motion = MetaWear.mbl_mw_acc_bosch_get_motion_data_signal(device.board);
+    MetaWear.mbl_mw_datasignal_subscribe(sig_motion, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        var data = pointer.deref();
+        var value = data.parseValue();
+        console.log('Sig motion detected: ' + value);
+    }))
+    // Start detecting motion and turn on acc
+    MetaWear.mbl_mw_acc_bosch_enable_motion_detection(device.board, MBL_MW_ACC_BOSCH_MOTION_SIGMOTION);
 
 High Frequency Stream
 ^^^^^^^^^^^^^^^^^^^^^
@@ -114,6 +264,8 @@ When you have set the operation mode, call
     MetaWear.mbl_mw_acc_bmi160_set_step_counter_mode(device.board, MBL_MW_ACC_BMI160_STEP_COUNTER_MODE_SENSITIVE);
     MetaWear.mbl_mw_acc_bmi160_write_step_counter_config(device.board);
 
+The BMI270 accelerometer does not support step counter modes.
+
 Reading The Counter
 ^^^^^^^^^^^^^^^^^^^
 One way to retrieve step counts is to periodcally read the step counter.  To read the step counter, call 
@@ -140,6 +292,8 @@ The counter is not enabled by default so you will need enable it by calling
     MetaWear.mbl_mw_acc_start(device.board);
     MetaWear.mbl_mw_datasignal_read(signal);
 
+For the BMI270, you can call `mbl_mw_acc_bmi270_enable_step_counter <https://mbientlab.com/documents/metawear/cpp/latest/accelerometer__bosch_8h.html#a48e850d6bdb4b7084c735885465fc1c7>`_ when configuring the board.
+
 Using The Detector
 ^^^^^^^^^^^^^^^^^^
 Alternatively, you can receive notifications for each step detected by calling 
@@ -156,12 +310,28 @@ Alternatively, you can receive notifications for each step detected by calling
     MetaWear.mbl_mw_acc_bmi160_enable_step_detector(device.board);
     MetaWear.mbl_mw_acc_start(device.board);
 
+For the BMI270, the detector will not send notifications every step but instead every 20*X steps: ::
+
+    MetaWear.mbl_mw_acc_start(device.board);
+    // Write the trigger for the step counter
+    MetaWear.mbl_mw_acc_bmi270_set_step_counter_trigger(device.board, 1); //every 20 steps
+    MetaWear.mbl_mw_acc_bmi270_write_step_counter_config(device.board);
+    // Reset the counter
+    MetaWear.mbl_mw_acc_bmi270_reset_step_counter(board);
+    // Get the step signal
+    let detector = MetaWear.mbl_mw_acc_bmi270_get_step_detector_data_signal(device.board);
+    MetaWear.mbl_mw_datasignal_subscribe(detector, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
+        console.log('Another 20 steps detected');
+    }))
+    // Start detecting motion and turn on acc
+    MetaWear.mbl_mw_acc_bmi270_enable_step_counter(device.board);
+
 Orientation Detection
 ---------------------
 The orientation detector alerts you when the sensor's orientation changes between portrait/landscape and front/back.  Data is represented as an 
 `MblMwSensorOrientation <https://mbientlab.com/docs/metawear/cpp/0/types_8h.html#a2e83167b55d36e1d48d100f342ad529c>`_ enum.
 
-This feature is currently only supported on devices using the BMI160 or BMA255 accelerometers.  
+This feature is currently only supported on devices using the BMI160 or BMA255 accelerometers. It is not supported on the BMI270.
 
 ::
 

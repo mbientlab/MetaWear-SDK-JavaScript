@@ -62,5 +62,18 @@ Changing connection parameters is not guaranteed to work; Apple only accepts 15m
 A more detailed explanation of about BTLE connection parameters can be found on this 
 `post <https://devzone.nordicsemi.com/question/60/what-is-connection-parameters/>`_ from the Nordic Developer Zone forums. ::
 
-    MetaWear.mbl_mw_settings_set_connection_parameters(board, 10.0, 1024.0, 0, 6000);
+    MetaWear.mbl_mw_settings_set_connection_parameters(device.board, 10.0, 1024.0, 0, 6000);
 
+MMS 3V Regulator
+---------------------
+The MMS (MetaMotion) board has a 3V regulator that can be turned on and off for IOs.
+
+It is automatically turned on to power the coin vibration motor (if there is one attached), the ambient light sensor, and the LED.
+
+However, if you have an external peripheral on the IOs that needs 3V power (such as a buzzer or UV sensor), you can use this function to turn on the power: ::
+
+    MetaWear.mbl_mw_settings_enable_3V_regulator(device.board, 1);
+
+And to turn it off: ::
+
+    MetaWear.mbl_mw_settings_enable_3V_regulator(device.board, 0);
