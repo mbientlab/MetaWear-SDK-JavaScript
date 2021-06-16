@@ -1,4 +1,9 @@
-var MetaWear = require('../index')//require('metawear');
+// LOCAL
+var MetaWear = require('../index')
+// METAWEAR
+//require('metawear');
+
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref')
 
 // MetaWear.discoverByAddress('f6:3d:13:48:ce:ab', function (device) {
@@ -6,6 +11,7 @@ MetaWear.discover(function (device) {
   console.log('connecting...' + device.address);
   device.connectAndSetUp(function (error) {
     console.log('connected!');
+    // Find the Anonymous signals
     MetaWear.mbl_mw_metawearboard_create_anonymous_datasignals(device.board, ref.NULL,
       MetaWear.FnVoid_VoidP_MetaWearBoardP_AnonymousDataSignalP_UInt.toPointer(function (context, board, anonymousSignals, size) {
         if (!anonymousSignals) {
@@ -16,17 +22,22 @@ MetaWear.discover(function (device) {
         anonymousSignals.length = size;
         var i;
         for (i = 0; i < size; i++) {
+          // Get signals that have been logged using the identifier api
           var identifier = MetaWear.mbl_mw_anonymous_datasignal_get_identifier(anonymousSignals[i]);
+          // Subscribe to the signals we found
           MetaWear.mbl_mw_anonymous_datasignal_subscribe(anonymousSignals[i], ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer(function onSignal(context, dataPtr) {
             var data = dataPtr.deref();
             var pt = data.parseValue();
             console.log(identifier + ':' + data.epoch + ' ' + JSON.stringify(pt));
           }));
         }
+        // Download the log
         download(device, function () {
           device.once('disconnect', function (reason) {
+            // Exit App
             process.exit(0);
           });
+          // Reset
           MetaWear.mbl_mw_macro_erase_all(device.board);
           MetaWear.mbl_mw_debug_reset_after_gc(device.board);
           MetaWear.mbl_mw_debug_disconnect(device.board);

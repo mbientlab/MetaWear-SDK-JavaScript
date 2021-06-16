@@ -1,10 +1,17 @@
-var MetaWear = require('../index')//require('metawear');
+// LOCAL
+var MetaWear = require('../index')
+// METAWEAR
+//require('metawear');
+
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref');
 var tempLogger = null;
 var tempTimer = null;
 
-MetaWear.discoverByAddress('f9:b5:f9:81:3f:77', function(device) {
+// Discover by MAC address
+MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
   console.log('Discovered');
+  // Connect and setup
   device.connectAndSetUp(async function (error) {
     console.log('Connected');
     // Start logging
@@ -17,12 +24,14 @@ MetaWear.discoverByAddress('f9:b5:f9:81:3f:77', function(device) {
       console.log('Wait 10 seconds');
       setTimeout(function () {
         console.log('Done waiting');
+        // Download log
         downloadLog(device, function (error) {
           device.once('disconnect', function (reason) {
             console.log('Disconnected');
             process.exit(0);
           });
           console.log('Disconnect');
+          // Reset device
           MetaWear.mbl_mw_debug_reset(device.board);
         });
       }, 10000);
@@ -35,7 +44,9 @@ function downloadLog(device, callback) {
   MetaWear.mbl_mw_timer_remove(tempTimer);
   // Shutdown log
   MetaWear.mbl_mw_logging_stop(device.board);
-  // Setup handerl for accel data points
+    // MMS only call
+  MetaWear.mbl_mw_logging_flush_page(device.board);
+  // Setup handler for accel data points
   MetaWear.mbl_mw_logger_subscribe(tempLogger, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer(function onSignal(context, dataPtr) {
     var data = dataPtr.deref();
     var pt = data.parseValue();
@@ -43,6 +54,7 @@ function downloadLog(device, callback) {
   }));
   // Setup the handlers for events during the download
   var downloadHandler = new MetaWear.LogDownloadHandler();
+  // Handler for progress of download
   downloadHandler.received_progress_update = MetaWear.FnVoid_VoidP_UInt_UInt.toPointer(function onSignal(context, entriesLeft, totalEntries) {
     console.log('received_progress_update entriesLeft:' + entriesLeft + ' totalEntries:' + totalEntries);
     if (entriesLeft === 0) {
@@ -51,9 +63,11 @@ function downloadLog(device, callback) {
       callback(null);
     }
   });
+  // Handler for unknown entry
   downloadHandler.received_unknown_entry = MetaWear.FnVoid_VoidP_UByte_Long_UByteP_UByte.toPointer(function onSignal(context, id, epoch, data, length) {
     console.log('received_unknown_entry');
   });
+  // Handler for unhandled entry
   downloadHandler.received_unhandled_entry = MetaWear.FnVoid_VoidP_DataP.toPointer(function onSignal(context, dataPtr) {
     var data = dataPtr.deref();
     var dataPoint = data.parseValue();

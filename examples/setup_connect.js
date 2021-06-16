@@ -1,7 +1,12 @@
-var MetaWear = require('../index')//require('metawear');
+// LOCAL
+var MetaWear = require('../index')
+// METAWEAR
+//require('metawear');
+
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref');
 
-MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
+MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
 //MetaWear.discover(function (device) {
   console.log('got em');
   // you can be notified of disconnects

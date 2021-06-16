@@ -1,8 +1,12 @@
-var MetaWear = require('../index')//require('metawear');
+// LOCAL
+var MetaWear = require('../index')
+// METAWEAR
+//require('metawear');
 
-// If you know the MAC address, you can uncomment this line
-MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
+// If you don't know the MAC address, you can uncomment this line
+// and it will connect to nearest automatically
 //MetaWear.discover(function (device) {
+MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
   console.log('got em');
   // you can be notified of disconnects
   device.on('disconnect', function () {

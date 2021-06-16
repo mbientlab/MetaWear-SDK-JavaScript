@@ -1,5 +1,13 @@
-var MetaWear = require('../index')//require('metawear');
+// LOCAL
+var MetaWear = require('../index')
+// METAWEAR
+//require('metawear');
+
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref');
+
+// THIS IS FOR THE MMR, MMC, or MMRL ONLY
+
 // Store the log event for later download.  If your program needs to terminate
 // before performing the log download, you will need to use mbl_mw_metawearboard_serialize
 // to store the device state and that pass that state as the second argument to
@@ -7,7 +15,7 @@ var ref = require('ref');
 // to retrieve this accelLogger object
 var accelLogger = null;
 
-// If you know the MAC address, you can uncomment this line
+// If you know the MAC address:
 MetaWear.discoverByAddress('d1:e7:65:2a:ad:6f', function (device) {
 //MetaWear.discover(function (device) {
   console.log('discovered ' + device.address);

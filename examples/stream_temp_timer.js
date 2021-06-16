@@ -1,14 +1,20 @@
-var MetaWear = require('./index.js');
-var cbindings = require('./MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
+// LOCAL
+var MetaWear = require('../index')
+// METAWEAR
+//require('metawear');
+
+var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref');
 
-MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
+// Discover by mac
+MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
   console.log('Discovered');
+  // Connect and setup
   device.connectAndSetUp(async function (error) {
     console.log('Connected');
     
-    // Get swithc signal 
-    console.log('Get switch');
+    // Get temp signal 
+    console.log('Get temp');
     var temp = MetaWear.mbl_mw_multi_chnl_temp_get_temperature_data_signal(device.board,1);
 
     // Subscribe to it
@@ -17,7 +23,7 @@ MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
       console.log('got data');
       var data = pointer.deref();
       var value = data.parseValue();
-      console.log('epoch: ' + data.epoch + ' switch: ' + value);
+      console.log('epoch: ' + data.epoch + ' temp: ' + value);
     }));
 
     // Create a timer 
@@ -31,6 +37,7 @@ MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
     let timer = await promise;
   
     // Create event based on timer and record as a command
+    // The timer will read the temp signal every 1 second and repeat
     console.log('Record command');
     MetaWear.mbl_mw_event_record_commands(timer);
     console.log('Command to read temp signal');	
@@ -48,13 +55,17 @@ MetaWear.discoverByAddress('c8:4b:aa:97:50:05', function(device) {
     console.log('Start');
     MetaWear.mbl_mw_timer_start(timer);
     
+    // Terminal on any input in the terminal
     console.log('Press any key to exit');
     process.stdin.setRawMode(true);
     process.stdin.resume();
     process.stdin.on('data', () => {
       console.log('Disconnect');
       MetaWear.mbl_mw_debug_reset(device.board);
-      process.exit(0);
+      setTimeout(function () {
+        // Exit terminal
+        process.exit(1);
+      }, 2000);
     });
   });
 });
