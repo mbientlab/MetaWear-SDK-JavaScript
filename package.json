@@ -1,6 +1,6 @@
 {
   "name": "metawear",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Laura Kassovic <laura@mbientlab.com>",
   "license": "SEE LICENSE IN LICENSE",
   "description": "Official JavaScript SDK for MetaWear",
