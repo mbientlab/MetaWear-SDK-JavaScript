@@ -2,8 +2,9 @@
 var MetaWear = require('../index')
 // METAWEAR
 //require('metawear');
-
-var ref = require('ref')
+const SegfaultHandler = require('segfault-handler');
+SegfaultHandler.registerHandler('crash.log');
+var ref = require('ref-napi')
 
 // Main function
 async function mainAsync(mac) {
@@ -26,8 +27,9 @@ async function mainAsync(mac) {
   // Stream acc signal
   MetaWear.mbl_mw_datasignal_subscribe(acc, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
     var data = pointer.deref();
-    var value = data.parseValue();
-    console.log('epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z)
+    console.log(data);
+    //var value = data.parseValue();
+    //console.log('epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z)
   }))
   
   // Start acc
@@ -38,11 +40,13 @@ async function mainAsync(mac) {
   // Terminal on terminal input
   process.openStdin().addListener("data", data => {
     console.log('Reset.')
-    MetaWear.mbl_mw_debug_reset(device.board)
+    MetaWear.mbl_mw_debug_reset(device.board);
+    MetaWear.mbl_mw_debug_disconnect(device.board);
+    console.log('Disconnect');
     setTimeout(function () {
       // Exit terminal
       process.exit(1);
-    }, 2000);
+    }, 4000);
   })
 }
 
