@@ -3,7 +3,7 @@ var MetaWear = require('../index')
 // METAWEAR
 //require('metawear');
 
-var ref = require('ref');
+var ref = require('ref-napi');
 
 async function mainAsync(mac) {
   // Find device with MAC address

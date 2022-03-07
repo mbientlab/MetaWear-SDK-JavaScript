@@ -5,7 +5,7 @@ var MetaWear = require('../index')
 
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var fs = require('fs');
-var ref = require('ref');
+var ref = require('ref-napi');
 
 var addresses = [
   'ea:78:c3:d3:f0:8a',

@@ -4,7 +4,7 @@ var MetaWear = require('../index')
 //require('metawear');
 
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
-var ref = require('ref');
+var ref = require('ref-napi');
 
 // Setup function
 async function setupStream(device) {

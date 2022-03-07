@@ -2,12 +2,11 @@
 var MetaWear = require('../index')
 // METAWEAR
 //require('metawear');
-
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
-var ref = require('ref');
+var ref = require('ref-napi');
 
 // If you know the MAC address:
-MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
+MetaWear.discoverByAddress('d1:e7:65:2a:ad:6f', function(device) {
 //MetaWear.discover(function (device) {
   device.connectAndSetUp(function (error) {
     // Create a LED patter type

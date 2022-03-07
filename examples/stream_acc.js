@@ -2,8 +2,7 @@
 var MetaWear = require('../index')
 // METAWEAR
 //require('metawear');
-
-var ref = require('ref')
+var ref = require('ref-napi')
 
 // Main function
 async function mainAsync(mac) {
@@ -38,11 +37,13 @@ async function mainAsync(mac) {
   // Terminal on terminal input
   process.openStdin().addListener("data", data => {
     console.log('Reset.')
-    MetaWear.mbl_mw_debug_reset(device.board)
+    MetaWear.mbl_mw_debug_reset(device.board);
+    MetaWear.mbl_mw_debug_disconnect(device.board);
+    console.log('Disconnect');
     setTimeout(function () {
       // Exit terminal
       process.exit(1);
-    }, 2000);
+    }, 4000);
   })
 }
 
