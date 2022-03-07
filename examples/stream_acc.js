@@ -2,8 +2,6 @@
 var MetaWear = require('../index')
 // METAWEAR
 //require('metawear');
-const SegfaultHandler = require('segfault-handler');
-SegfaultHandler.registerHandler('crash.log');
 var ref = require('ref-napi')
 
 // Main function
@@ -27,9 +25,8 @@ async function mainAsync(mac) {
   // Stream acc signal
   MetaWear.mbl_mw_datasignal_subscribe(acc, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
     var data = pointer.deref();
-    console.log(data);
-    //var value = data.parseValue();
-    //console.log('epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z)
+    var value = data.parseValue();
+    console.log('epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z)
   }))
   
   // Start acc

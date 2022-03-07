@@ -4,7 +4,7 @@ var MetaWear = require('../index')
 //require('metawear');
 
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
-var ref = require('ref');
+var ref = require('ref-napi');
 
 // Main function
 async function mainAsync(mac) {

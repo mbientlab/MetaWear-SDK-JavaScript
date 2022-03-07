@@ -5,7 +5,7 @@ var MetaWear = require('../index')
 
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 
-var ref = require('ref');
+var ref = require('ref-napi');
 // Store the log event for later download.  If your program needs to terminate
 // before performing the log download, you will need to use mbl_mw_metawearboard_serialize
 // to store the device state and that pass that state as the second argument to

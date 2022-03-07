@@ -4,7 +4,7 @@ var MetaWear = require('../index')
 //require('metawear');
 
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
-var ref = require('ref')
+var ref = require('ref-napi')
 
 // MetaWear.discoverByAddress('f6:3d:13:48:ce:ab', function (device) {
 MetaWear.discover(function (device) {
