@@ -1,6 +1,6 @@
 {
   "name": "metawear",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Laura Kassovic <laura@mbientlab.com>",
   "license": "SEE LICENSE IN LICENSE",
   "description": "Official JavaScript SDK for MetaWear",
@@ -21,7 +21,7 @@
   ],
   "main": "./index.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=12.0.0 <13.0.0"
   },
   "homepage": "https://github.com/mbientlab/MetaWear-SDK-JavaScript#readme",
   "dependencies": {

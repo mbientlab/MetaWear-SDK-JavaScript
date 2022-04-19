@@ -55,20 +55,20 @@ This will install the latest Node. You may need to alias nodejs to node.
 ##### 2. You can install Node from a PPA:
 ```
 cd ~
-curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt install nodejs
 nodejs -v
 ```
-This will install node v10.23.0 (latest stable release of node 10). You can replace the 10 with 12 if you want to install node 12. You may need to alias nodejs to node.
+This will install node v12. You may need to alias nodejs to node.
 
 ##### 3. Using NVM (preferred method):
 ```
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
 bash install_nvm.sh
 source ~/.profile
-nvm install 10.23.0
-nvm use 10.23.0
+nvm install 12
+nvm use 12
 node -v
 ```
 Check the latest version of NVM before you install (it might be higher than v0.35.3). You can go online to learn how to use NVM to switch node versions on the fly.
@@ -79,9 +79,9 @@ It is important to note that because our scripts use OS level Bluetooth librarie
 You also need to check that the version of node you are using is as expected for sudo:
 ```
 $ node -v
-v0.10.23
+v12.22.10
 $ sudo node -v
-v0.11.8-pre
+v12.22.10
 ```
 As you can see here, the sudo node version is not the same as the current user version. Here's a [workaround](https://stackoverflow.com/questions/21215059/cant-use-nvm-from-root-or-sudo). You can google-fu more about this topic.
 ```
@@ -92,8 +92,7 @@ sudo cp -r $n/{bin,lib,share} /usr/local
 ```
 
 ##### Using bluez, BLE Dongles, and Node
-At the time of this release, Node 10 is supported. Node 12 is not currently supported as `node-ffi` and some other libraries have not been updated.
-We have to use a custom fork of node-ffi until then (see package.json). Hopefully node-ffi will be updated to support Node 10 and Node 12 officially.
+At the time of this release, Node 12 is supported. Node 14/16 is not currently supported as `node-ffi` and some other libraries have not been updated to support those versions.
 
 Bluez 5.50 works but 5.54 might not work. Here's a good [tutorial](https://learn.adafruit.com/install-bluez-on-the-raspberry-pi/installation)
 
