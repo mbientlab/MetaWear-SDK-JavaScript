@@ -1,3 +1,1 @@
-var MetaWear = require('./lib/metawear');
-
-module.exports = MetaWear;
+module.exports = require("./lib/metawear.js");
