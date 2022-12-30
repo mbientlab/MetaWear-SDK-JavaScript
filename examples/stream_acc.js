@@ -22,11 +22,16 @@ async function mainAsync(mac) {
   let acc = MetaWear.mbl_mw_acc_get_acceleration_data_signal(device.board)
   console.log('Set up stream.')
   
+  var lastDate = new Date();
+
   // Stream acc signal
   MetaWear.mbl_mw_datasignal_subscribe(acc, ref.NULL, MetaWear.FnVoid_VoidP_DataP.toPointer((ctx, pointer) => {
     var data = pointer.deref();
     var value = data.parseValue();
-    console.log('epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z)
+    var newDate = new Date().setUTCSeconds(data.epoch);
+    var seconds = (newDate.getTime() - lastDate.getTime()) / 1000;
+    console.log('elapsed: ' + seconds + 'epoch: ' + data.epoch + ' acc: ' + value.x + ' ' + value.y + ' ' + value.z);
+    var lastDate = newDate;
   }))
   
   // Start acc
