@@ -7,7 +7,7 @@ var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref-napi');
 
 // Discover MAC
-MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
+MetaWear.discoverByAddress('f7:c0:14:1b:e5:86', function(device) {
   console.log('Discovered');
   // Connect and setup
   device.connectAndSetUp(async function (error) {
