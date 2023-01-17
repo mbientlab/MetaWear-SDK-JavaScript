@@ -6,7 +6,7 @@ var MetaWear = require('../index')
 var cbindings = require('../MetaWear-SDK-Cpp/bindings/javascript/cbindings.js');
 var ref = require('ref-napi');
 
-MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
+MetaWear.discoverByAddress('f7:c0:14:1b:e5:86', function(device) {
 //MetaWear.discover(function (device) {
   console.log('got em');
   // you can be notified of disconnects
@@ -22,14 +22,23 @@ MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
     // Slave latency = metawear can choose not to answer when central asks for an update (i.e metawear can sleep longer - doesn't affect transfer speeds)
     // Connection supervision timeout = determines timeout from last data exchange (tells central how long to wait to attempt to reconnect to a lost conn - if your metawear goes in and out of range often, it is better to have a short timeout)
     // This is not guaranteed to work, central can reject peripheral and vice-versa. Apple only accepts 15ms for example.
-	MetaWear.mbl_mw_settings_set_connection_parameters(device.board, 7.5, 7.5, 0, 4000);
-	console.log('link speed updated');
+    MetaWear.mbl_mw_settings_set_connection_parameters(device.board, 7.5, 7.5, 0, 4000);
+    console.log('link speed updated');
+    // Get the RSSI now:
+    var rssi = device._peripheral.rssi;
+    for (let i = 1; i < 5000; i++) {
+      //console.log(device._peripheral.rssi);
+      rssi += device._peripheral.rssi;
+    } 
+    console.log('Average rssi :' + rssi/5000);
+    // Set the highest signals strength
+    MetaWear.mbl_mw_settings_set_tx_power(device.board, 4);
     // Everything we know about the device:
-	console.log(device);
-	// Calls using CDK CPP:
-	model = MetaWear.mbl_mw_metawearboard_get_model(device.board);
+    //console.log(device);
+    // Find out more about the sensor:
+    model = MetaWear.mbl_mw_metawearboard_get_model(device.board);
     console.log('Model: ' + model);
-	device.modelDescription = MetaWear.mbl_mw_metawearboard_get_model_name(device.board);
+    device.modelDescription = MetaWear.mbl_mw_metawearboard_get_model_name(device.board);
     console.log('Model Name: ' + device.modelDescription);
     var present = MetaWear.mbl_mw_metawearboard_lookup_module(device.board, 'GYRO');
     console.log('Gyroscope: ' + (present == -1 ? 'Not Present' : 'Present'));
@@ -39,24 +48,6 @@ MetaWear.discoverByAddress('ea:78:c3:d3:f0:8a', function(device) {
     console.log('Magnetometer: ' + (present == -1 ? 'Not Present' : 'Present'));
     present = MetaWear.mbl_mw_metawearboard_lookup_module(device.board, 'SENSOR_FUSION');
     console.log('Sensor Fusion: ' + (present == -1 ? 'Not Present' : 'Present'));
-	// Calls Noble APIs:
-	device.readManufacturerName(function (error, manufacturerName) {
-	  console.log('Manufacturer Name: ' + manufacturerName);
-	});
-	device.readSerialNumber(function (error, serialNumber) {
-	  console.log('Serial #: ' + serialNumber);
-    });
-    device.readHardwareRevision(function (error, hardwareRevision) {
-      console.log('Hardware Revision: ' + hardwareRevision);
-    });
-    device.readFirmwareRevision(function (error, firmwareRevision) {
-     console.log('Firmware Revision: ' + firmwareRevision);
-    });
-    device.readModelNumber(function (error, modelNumber) {
-      device.modelNumber = modelNumber;
-      console.log('Model #: ' + modelNumber);
-
-    });
     setTimeout(function () {
       device.disconnect(function (error) {
         console.log('disconnect call finished');
