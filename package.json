@@ -39,7 +39,7 @@
     "mocha": "^9.2.1"
   },
   "scripts": {
-    "preinstall": "git submodule update -i -r",
+    "preinstall": "git submodule update --init --recursive",
     "install": "make OPT_FLAGS=-Wno-strict-aliasing -C MetaWear-SDK-Cpp/ -j",
     "uninstall": "make -C MetaWear-SDK-Cpp/ clean",
     "pretest": "jshint *.js lib/. test/.",
